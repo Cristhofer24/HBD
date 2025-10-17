@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños! 🌻</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="birthday-card">
+        <!-- Reproductor de música -->
+        <div class="music-player">
+            <button id="playBtn" class="play-btn">🎵</button>
+            <audio id="audioPlayer" loop>
+                <source src="media/Lewis Capaldi - Someone You Loved (Lyrics).mp3" type="audio/mpeg">
+            </audio>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="card-content">
+            <!-- Girasoles decorativos -->
+            <div class="sunflowers">
+                <div class="sunflower sunflower-1">🌻</div>
+                <div class="sunflower sunflower-2">🌻</div>
+                <div class="sunflower sunflower-3">🌻</div>
+                <div class="sunflower sunflower-4">🌻</div>
+            </div>
+
+            <!-- Mensaje principal -->
+            <div class="main-message">
+                <h1 class="birthday-title">¡Feliz Cumpleaños!</h1>
+                <div class="name-placeholder">Para mi amiga especial</div>
+                <p class="birthday-message">
+                    Que este nuevo año de vida esté lleno de momentos hermosos, 
+                    risas contagiosas y sueños que se hagan realidad. 
+                    ¡Que brilles como el sol! 🌻✨
+                </p>
+            </div>
+
+            <!-- Confetti -->
+            <div class="confetti-container">
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+                <div class="confetti"></div>
+            </div>
+
+            <!-- Botón de sorpresa -->
+            <button class="surprise-btn" id="surpriseBtn">¡Toca para una sorpresa! 🎉</button>
+        </div>
+
+        <!-- Mensaje oculto que aparece con la sorpresa -->
+        <div class="hidden-message" id="hiddenMessage">
+            <div class="giant-sunflower">
+                <!-- Pétalos del girasol -->
+                <div class="sunflower-petals">
+                    <div class="petal petal-1"></div>
+                    <div class="petal petal-2"></div>
+                    <div class="petal petal-3"></div>
+                    <div class="petal petal-4"></div>
+                    <div class="petal petal-5"></div>
+                    <div class="petal petal-6"></div>
+                    <div class="petal petal-7"></div>
+                    <div class="petal petal-8"></div>
+                    <div class="petal petal-9"></div>
+                    <div class="petal petal-10"></div>
+                    <div class="petal petal-11"></div>
+                    <div class="petal petal-12"></div>
+                    <div class="petal petal-13"></div>
+                    <div class="petal petal-14"></div>
+                    <div class="petal petal-15"></div>
+                    <div class="petal petal-16"></div>
+                </div>
+                
+                <!-- Centro del girasol con la foto -->
+                <div class="sunflower-center">
+                    <img src="media/Allison.jpg" alt="Allison" class="allison-photo-in-sunflower">
+                    <div class="center-ring"></div>
+                </div>
+                
+                <!-- Mensaje -->
+                <div class="sunflower-message">
+                    <h2>¡Feliz Cumpleaños Allison! 🌟</h2>
+                    <p>¡Que brilles como el sol! ✨</p>
+                    <div class="hearts">💖💖💖</div>
+                </div>
+            </div>
+            
+            <!-- Globos animados -->
+            <div class="balloons">
+                <div class="balloon balloon-1">🎈</div>
+                <div class="balloon balloon-2">🎈</div>
+                <div class="balloon balloon-3">🎈</div>
+                <div class="balloon balloon-4">🎈</div>
+                <div class="balloon balloon-5">🎈</div>
+                <div class="balloon balloon-6">🎈</div>
+                <div class="balloon balloon-7">🎈</div>
+                <div class="balloon balloon-8">🎈</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/animation.js"></script>
+</body>
+</html>

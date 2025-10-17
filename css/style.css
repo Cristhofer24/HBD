@@ -1,0 +1,718 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #FFE5B4 0%, #FFD700 25%, #FFA500 50%, #FF8C00 75%, #FF6347 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Animación de fondo con partículas */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 255, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+    animation: backgroundShift 10s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+/* Contenedor principal */
+.birthday-card {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Reproductor de música */
+.music-player {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.play-btn {
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+}
+
+.play-btn.playing {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    animation: cardEntrance 1s ease-out;
+}
+
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Girasoles decorativos */
+.sunflowers {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 60px;
+}
+
+.sunflower {
+    position: absolute;
+    font-size: 40px;
+    animation: sunflowerFloat 3s ease-in-out infinite;
+}
+
+.sunflower-1 {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.sunflower-2 {
+    left: 30%;
+    animation-delay: 0.5s;
+}
+
+.sunflower-3 {
+    right: 30%;
+    animation-delay: 1s;
+}
+
+.sunflower-4 {
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+@keyframes sunflowerFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Mensaje principal */
+.main-message {
+    margin-top: 20px;
+}
+
+.birthday-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #FF8C00;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(255, 140, 0, 0.3);
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    0% { text-shadow: 2px 2px 4px rgba(255, 140, 0, 0.3); }
+    100% { text-shadow: 2px 2px 8px rgba(255, 140, 0, 0.6), 0 0 20px rgba(255, 215, 0, 0.4); }
+}
+
+.name-placeholder {
+    font-size: 1.2rem;
+    color: #FF6347;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.birthday-message {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* Confetti */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FFD700;
+    animation: confettiFall 3s linear infinite;
+}
+
+.confetti:nth-child(1) { left: 10%; animation-delay: 0s; background: #FFD700; }
+.confetti:nth-child(2) { left: 20%; animation-delay: 0.5s; background: #FFA500; }
+.confetti:nth-child(3) { left: 30%; animation-delay: 1s; background: #FF6347; }
+.confetti:nth-child(4) { left: 40%; animation-delay: 1.5s; background: #FFD700; }
+.confetti:nth-child(5) { left: 60%; animation-delay: 0.3s; background: #FFA500; }
+.confetti:nth-child(6) { left: 70%; animation-delay: 0.8s; background: #FF6347; }
+.confetti:nth-child(7) { left: 80%; animation-delay: 1.3s; background: #FFD700; }
+.confetti:nth-child(8) { left: 90%; animation-delay: 1.8s; background: #FFA500; }
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Botón de sorpresa */
+.surprise-btn {
+    background: linear-gradient(45deg, #FF6347, #FF8C00);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 99, 71, 0.3);
+    animation: buttonPulse 2s infinite;
+    margin-bottom: 15px;
+}
+
+.surprise-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 99, 71, 0.5);
+}
+
+/* Botón de globos */
+.balloons-btn {
+    background: linear-gradient(45deg, #FF69B4, #FF1493, #FF69B4);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+    animation: balloonBounce 1.5s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.balloons-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
+}
+
+.balloons-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.balloons-btn:hover::before {
+    animation: shimmer 0.8s ease;
+}
+
+@keyframes buttonPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes balloonBounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); opacity: 0; }
+}
+
+/* Mensaje oculto */
+.hidden-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.hidden-message.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: flex !important;
+}
+
+/* Girasol gigante */
+.giant-sunflower {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    transform: scale(0.5);
+    transition: transform 0.8s ease;
+}
+
+.hidden-message.show .giant-sunflower {
+    transform: scale(1);
+}
+
+/* Pétalos del girasol */
+.sunflower-petals {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.petal {
+    position: absolute;
+    width: 80px;
+    height: 150px;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    transform-origin: center bottom;
+    top: 50%;
+    left: 50%;
+    margin-left: -40px;
+    margin-top: -75px;
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    animation: petalGlow 3s ease-in-out infinite alternate;
+}
+
+/* Posicionamiento de pétalos */
+.petal-1 { transform: rotate(0deg) translateY(-150px); }
+.petal-2 { transform: rotate(22.5deg) translateY(-150px); }
+.petal-3 { transform: rotate(45deg) translateY(-150px); }
+.petal-4 { transform: rotate(67.5deg) translateY(-150px); }
+.petal-5 { transform: rotate(90deg) translateY(-150px); }
+.petal-6 { transform: rotate(112.5deg) translateY(-150px); }
+.petal-7 { transform: rotate(135deg) translateY(-150px); }
+.petal-8 { transform: rotate(157.5deg) translateY(-150px); }
+.petal-9 { transform: rotate(180deg) translateY(-150px); }
+.petal-10 { transform: rotate(202.5deg) translateY(-150px); }
+.petal-11 { transform: rotate(225deg) translateY(-150px); }
+.petal-12 { transform: rotate(247.5deg) translateY(-150px); }
+.petal-13 { transform: rotate(270deg) translateY(-150px); }
+.petal-14 { transform: rotate(292.5deg) translateY(-150px); }
+.petal-15 { transform: rotate(315deg) translateY(-150px); }
+.petal-16 { transform: rotate(337.5deg) translateY(-150px); }
+
+@keyframes petalGlow {
+    0% { 
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        filter: brightness(1);
+    }
+    100% { 
+        box-shadow: 0 5px 25px rgba(255, 215, 0, 0.6), 0 0 30px rgba(255, 215, 0, 0.4);
+        filter: brightness(1.1);
+    }
+}
+
+/* Centro del girasol */
+.sunflower-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, #8B4513 0%, #654321 50%, #4A2C2A 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(139, 69, 19, 0.5);
+    animation: centerPulse 2s ease-in-out infinite alternate;
+}
+
+.allison-photo-in-sunflower {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    animation: photoGlow 2s ease-in-out infinite alternate;
+}
+
+.center-ring {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 3px solid #FF6347;
+    border-radius: 50%;
+    animation: ringRotate 6s linear infinite;
+}
+
+@keyframes centerPulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -50%) scale(1.05); }
+}
+
+@keyframes photoGlow {
+    0% { 
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        filter: brightness(1);
+    }
+    100% { 
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.4);
+        filter: brightness(1.1);
+    }
+}
+
+@keyframes ringRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mensaje del girasol */
+.sunflower-message {
+    position: absolute;
+    bottom: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    animation: messageSlide 0.8s ease-out 0.5s both;
+}
+
+.sunflower-message h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #FFD700;
+}
+
+.sunflower-message p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.hearts {
+    font-size: 1.5rem;
+    animation: heartBeat 1s ease-in-out infinite;
+}
+
+@keyframes messageSlide {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Globos animados */
+.balloons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.balloon {
+    position: absolute;
+    font-size: 40px;
+    animation: balloonFloat 6s ease-in-out infinite;
+}
+
+.balloon-1 { left: 10%; top: 20%; animation-delay: 0s; }
+.balloon-2 { left: 20%; top: 10%; animation-delay: 0.5s; }
+.balloon-3 { left: 30%; top: 15%; animation-delay: 1s; }
+.balloon-4 { left: 40%; top: 5%; animation-delay: 1.5s; }
+.balloon-5 { right: 40%; top: 20%; animation-delay: 2s; }
+.balloon-6 { right: 30%; top: 10%; animation-delay: 2.5s; }
+.balloon-7 { right: 20%; top: 15%; animation-delay: 3s; }
+.balloon-8 { right: 10%; top: 5%; animation-delay: 3.5s; }
+
+@keyframes balloonFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+        opacity: 0.8;
+    }
+    25% { 
+        transform: translateY(-20px) rotate(5deg); 
+        opacity: 1;
+    }
+    50% { 
+        transform: translateY(-10px) rotate(-3deg); 
+        opacity: 0.9;
+    }
+    75% { 
+        transform: translateY(-25px) rotate(3deg); 
+        opacity: 1;
+    }
+}
+
+/* Detener animaciones de girasoles durante sorpresa */
+.sunflowers.paused .sunflower {
+    animation-play-state: paused;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .birthday-card {
+        padding: 10px;
+    }
+    
+    .card-content {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    
+    .birthday-title {
+        font-size: 2.5rem;
+    }
+    
+    .play-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .music-player {
+        top: 15px;
+        right: 15px;
+    }
+    
+    .sunflower {
+        font-size: 30px;
+    }
+    
+    .hidden-message {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .hidden-message h2 {
+        font-size: 2rem;
+    }
+    
+    .giant-sunflower {
+        width: 400px;
+        height: 400px;
+    }
+    
+    .petal {
+        width: 60px;
+        height: 120px;
+        margin-left: -30px;
+        margin-top: -60px;
+    }
+    
+    .petal-1 { transform: rotate(0deg) translateY(-120px); }
+    .petal-2 { transform: rotate(22.5deg) translateY(-120px); }
+    .petal-3 { transform: rotate(45deg) translateY(-120px); }
+    .petal-4 { transform: rotate(67.5deg) translateY(-120px); }
+    .petal-5 { transform: rotate(90deg) translateY(-120px); }
+    .petal-6 { transform: rotate(112.5deg) translateY(-120px); }
+    .petal-7 { transform: rotate(135deg) translateY(-120px); }
+    .petal-8 { transform: rotate(157.5deg) translateY(-120px); }
+    .petal-9 { transform: rotate(180deg) translateY(-120px); }
+    .petal-10 { transform: rotate(202.5deg) translateY(-120px); }
+    .petal-11 { transform: rotate(225deg) translateY(-120px); }
+    .petal-12 { transform: rotate(247.5deg) translateY(-120px); }
+    .petal-13 { transform: rotate(270deg) translateY(-120px); }
+    .petal-14 { transform: rotate(292.5deg) translateY(-120px); }
+    .petal-15 { transform: rotate(315deg) translateY(-120px); }
+    .petal-16 { transform: rotate(337.5deg) translateY(-120px); }
+    
+    .sunflower-center {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .allison-photo-in-sunflower {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .sunflower-message {
+        bottom: -60px;
+        padding: 15px;
+    }
+    
+    .sunflower-message h2 {
+        font-size: 1.5rem;
+    }
+    
+    .balloon {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .birthday-title {
+        font-size: 2rem;
+    }
+    
+    .birthday-message {
+        font-size: 0.9rem;
+    }
+    
+    .surprise-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .balloons-btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+    
+    .card-content {
+        padding: 25px 15px;
+    }
+    
+    .giant-sunflower {
+        width: 320px;
+        height: 320px;
+    }
+    
+    .petal {
+        width: 50px;
+        height: 100px;
+        margin-left: -25px;
+        margin-top: -50px;
+    }
+    
+    .petal-1 { transform: rotate(0deg) translateY(-100px); }
+    .petal-2 { transform: rotate(22.5deg) translateY(-100px); }
+    .petal-3 { transform: rotate(45deg) translateY(-100px); }
+    .petal-4 { transform: rotate(67.5deg) translateY(-100px); }
+    .petal-5 { transform: rotate(90deg) translateY(-100px); }
+    .petal-6 { transform: rotate(112.5deg) translateY(-100px); }
+    .petal-7 { transform: rotate(135deg) translateY(-100px); }
+    .petal-8 { transform: rotate(157.5deg) translateY(-100px); }
+    .petal-9 { transform: rotate(180deg) translateY(-100px); }
+    .petal-10 { transform: rotate(202.5deg) translateY(-100px); }
+    .petal-11 { transform: rotate(225deg) translateY(-100px); }
+    .petal-12 { transform: rotate(247.5deg) translateY(-100px); }
+    .petal-13 { transform: rotate(270deg) translateY(-100px); }
+    .petal-14 { transform: rotate(292.5deg) translateY(-100px); }
+    .petal-15 { transform: rotate(315deg) translateY(-100px); }
+    .petal-16 { transform: rotate(337.5deg) translateY(-100px); }
+    
+    .sunflower-center {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .allison-photo-in-sunflower {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .sunflower-message {
+        bottom: -50px;
+        padding: 12px;
+    }
+    
+    .sunflower-message h2 {
+        font-size: 1.3rem;
+    }
+    
+    .balloon {
+        font-size: 25px;
+    }
+}
