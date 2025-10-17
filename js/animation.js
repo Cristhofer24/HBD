@@ -157,7 +157,7 @@ function showSurprise() {
             
             <!-- Texto debajo del círculo de la foto -->
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); margin-top: 120px;">
-                <div id="ovalText" style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #FFD700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight: 600; animation: typewriter 3s ease-in-out forwards; opacity: 0; text-align: center;">¡Feliz Cumpleaños Allison! 🌟</div>
+                <div id="ovalText" style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: #FFD700; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); font-weight: 600; animation: birthdayTextAnimation 4s ease-in-out infinite; opacity: 1; text-align: center;">¡Feliz Cumpleaños Allison! 🌟</div>
             </div>
             
             <!-- Mensaje flotante abajo -->
@@ -314,6 +314,7 @@ function createExtraBalloons() {
         setTimeout(() => {
             const balloon = document.createElement('div');
             balloon.innerHTML = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+            balloon.className = 'balloon';
             balloon.style.cssText = `
                 position: absolute;
                 font-size: 25px;
@@ -465,11 +466,37 @@ heartStyle.textContent = `
         }
     }
     
+    @keyframes birthdayTextAnimation {
+        0% {
+            transform: scale(1) rotate(0deg);
+            color: #FFD700;
+        }
+        25% {
+            transform: scale(1.1) rotate(1deg);
+            color: #FFA500;
+        }
+        50% {
+            transform: scale(1.05) rotate(-1deg);
+            color: #FFD700;
+        }
+        75% {
+            transform: scale(1.1) rotate(1deg);
+            color: #FFA500;
+        }
+        100% {
+            transform: scale(1) rotate(0deg);
+            color: #FFD700;
+        }
+    }
+    
     /* Responsive adjustments for mobile */
     @media (max-width: 768px) {
         #surpriseOverlay > div {
             margin-top: -100px !important;
             transform: scale(0.7) !important;
+        }
+        .balloon {
+            font-size: 35px !important;
         }
     }
     
@@ -477,6 +504,9 @@ heartStyle.textContent = `
         #surpriseOverlay > div {
             margin-top: -120px !important;
             transform: scale(0.6) !important;
+        }
+        .balloon {
+            font-size: 40px !important;
         }
     }
 `;
