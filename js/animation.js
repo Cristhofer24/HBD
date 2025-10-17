@@ -129,7 +129,7 @@ function showSurprise() {
     
     // Contenido del girasol
     surpriseDiv.innerHTML = `
-        <div style="position: relative; width: 500px; height: 500px; transform: scale(0.8); transition: transform 0.8s ease;">
+        <div style="position: relative; width: 500px; height: 500px; transform: scale(0.8); transition: transform 0.8s ease; margin-top: -50px;">
             <!-- Pétalos del girasol -->
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
                 <div style="position: absolute; width: 80px; height: 150px; background: linear-gradient(45deg, #FFD700, #FFA500); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; transform-origin: center bottom; top: 50%; left: 50%; margin-left: -40px; margin-top: -75px; transform: rotate(0deg) translateY(-150px); box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);"></div>
@@ -462,6 +462,21 @@ heartStyle.textContent = `
         100% {
             opacity: 1;
             transform: scale(1);
+        }
+    }
+    
+    /* Responsive adjustments for mobile */
+    @media (max-width: 768px) {
+        #surpriseOverlay > div {
+            margin-top: -100px !important;
+            transform: scale(0.7) !important;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        #surpriseOverlay > div {
+            margin-top: -120px !important;
+            transform: scale(0.6) !important;
         }
     }
 `;
